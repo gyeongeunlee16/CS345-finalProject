@@ -1,6 +1,6 @@
 // all middleware goes here
-var Course = require("../models/Course");
-var Topic = require("../models/Topic");
+var Course = require("../models/course");
+var Topic = require("../models/topic");
 
 var middlewareObj = {};
 
@@ -10,7 +10,7 @@ middlewareObj.checkCourseOwnership = function (req, res, next){
         Course.findById(req.params.id, function(err, foundCourse){
             if (err || !foundCourse){
                 req.flash('error', 'Course not found');
-                return res.redirect('/Courses');
+                return res.redirect('/courses');
             }else{
                 
                 //does user own the post?
