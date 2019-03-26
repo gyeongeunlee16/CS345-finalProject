@@ -15,12 +15,17 @@ var express     = require("express"),
 var topicRoutes    = require("./routes/topics"),
     courseRoutes = require("./routes/courses"),
     indexRoutes      = require("./routes/index")
-    
+
 //var url = process.env.DATABASEURL || 'mongodb://localhost/yelp_camp_v10';
 //mongoose.connect(url);
 
 //mongoose.connect('mongodb://localhost/yelp_camp_v10');
-mongoose.connect('mongodb+srv://CS345:de3s2VTZ5dpXY_K@cluster0-bv6gs.mongodb.net/test?retryWrites=true');
+mongoose.connect('mongodb+srv://c:de3s2VTZ5dpXY_K@cluster0-rwskd.mongodb.net/test?retryWrites=true',{ useNewUrlParser: true });
+
+//var url = process.env.DATABASEURL || 'mongodb+srv://c:de3s2VTZ5dpXY_K@cluster0-rwskd.mongodb.net/test?retryWrites=true';
+//mongoose.connect(url);
+
+
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
