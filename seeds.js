@@ -1,6 +1,6 @@
 var mongoose = require("mongoose");
-var Campground = require("./models/campground");
-var Comment   = require("./models/comment");
+var Course = require("./models/course");
+var Topic   = require("./models/topic");
 
 var data = [
     {
@@ -21,38 +21,40 @@ var data = [
 ]
 
 function seedDB(){
-   //Remove all campgrounds
-   Campground.remove({}, function(err){
+   //Remove all courses
+   Course.remove({}, function(err){
         if(err){
             console.log(err);
         }
-        console.log("removed campgrounds!");
-         //add a few campgrounds
+        console.log("removed courses!");
+         //add a few courses
         data.forEach(function(seed){
-            Campground.create(seed, function(err, campground){
+            Course.create(seed, function(err, course){
                 if(err){
                     console.log(err)
                 } else {
-                    console.log("added a campground");
-                    //create a comment
-                    Comment.create(
+                    console.log("added a course");
+                    //create a topic
+                    Topic.create(
                         {
                             text: "This place is great, but I wish there was internet",
                             author: "Homer"
-                        }, function(err, comment){
+                        }, function(err, topic){
                             if(err){
                                 console.log(err);
                             } else {
-                                campground.comments.push(comment);
-                                campground.save();
-                                console.log("Created new comment");
+                                course.topics.push(topic);
+                                course.save();
+                                console.log("Created new topic");
                             }
                         });
                 }
             });
         });
     }); 
-    //add a few comments
+    //add a few topics
 }
 
 module.exports = seedDB;
+
+
