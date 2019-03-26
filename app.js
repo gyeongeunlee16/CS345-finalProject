@@ -20,7 +20,7 @@ var topicRoutes    = require("./routes/topics"),
 //mongoose.connect(url);
 
 //mongoose.connect('mongodb://localhost/yelp_camp_v10');
-mongoose.connect('mongodb+srv://CS345:de3s2VTZ5dpXY_K@cluster0-eeqru.mongodb.net/test?retryWrites=true');
+mongoose.connect('mongodb+srv://CS345:de3s2VTZ5dpXY_K@cluster0-bv6gs.mongodb.net/test?retryWrites=true');
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
