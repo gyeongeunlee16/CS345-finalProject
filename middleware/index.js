@@ -1,20 +1,20 @@
 // all middleware goes here
-var Campground = require("../models/campground");
-var Comment = require("../models/comment");
+var Course = require("../models/Course");
+var Topic = require("../models/Topic");
 
 var middlewareObj = {};
 
-middlewareObj.checkCampgroundOwnership = function (req, res, next){
+middlewareObj.checkCourseOwnership = function (req, res, next){
     //if user logged in?
     if(req.isAuthenticated()){
-        Campground.findById(req.params.id, function(err, foundCampground){
-            if (err || !foundCampground){
-                req.flash('error', 'campground not found');
-                return res.redirect('/campgrounds');
+        Course.findById(req.params.id, function(err, foundCourse){
+            if (err || !foundCourse){
+                req.flash('error', 'Course not found');
+                return res.redirect('/Courses');
             }else{
                 
                 //does user own the post?
-                if (foundCampground.author.id.equals(req.user._id)){
+                if (foundCourse.author.id.equals(req.user._id)){
                     next();
                 //otherwise, redirect
                 }else{
@@ -31,17 +31,17 @@ middlewareObj.checkCampgroundOwnership = function (req, res, next){
     }
 };
 
-middlewareObj.checkCommentOwnership = function(req, res, next){
+middlewareObj.checkTopicOwnership = function(req, res, next){
     //if user logged in?
     if(req.isAuthenticated()){
-        Comment.findById(req.params.comment_id, function(err, foundComment){
+        Topic.findById(req.params.Topic_id, function(err, foundTopic){
             if (err){
-                req.flash('error', 'Comment not found');
-                return res.redirect('/campgrounds');
+                req.flash('error', 'Topic not found');
+                return res.redirect('/Courses');
             }else{
                 
-                //does user own the comment?
-                if (foundComment.author.id.equals(req.user._id)){
+                //does user own the Topic?
+                if (foundTopic.author.id.equals(req.user._id)){
                     next();
                 //otherwise, redirect
                 }else{
@@ -66,3 +66,4 @@ middlewareObj.isLoggedIn = function(req, res, next){
 };
 
 module.exports = middlewareObj
+
