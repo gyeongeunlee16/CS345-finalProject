@@ -4,6 +4,25 @@ var Course = require("../models/course");
 var Topic = require("../models/topic");
 var middleware = require('../middleware');
 
+
+
+// SHOW - shows more info about one Topic, which is its resources
+router.get("/:id", function(req, res){
+    //find the course with provided ID
+    Topic.findById(req.params.id).populate("resources").exec(function(err, foundTopic){
+        if(err || !foundTopic){
+            req.flash('error', 'Topic not found');
+            res.redirect('back');
+        } else {
+            console.log(foundTopic)
+            //render show template with that course
+            res.render("topics/show", {topic: foundTopic});
+        }
+    });
+});
+
+
+
 //Topics New
 router.get("/new", middleware.isLoggedIn, function(req, res){
     // find course by id
