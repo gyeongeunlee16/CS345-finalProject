@@ -7,7 +7,7 @@ var middleware = require('../middleware');
 //Topics New
 router.get("/new", middleware.isLoggedIn, function(req, res){
     // find course by id
-    console.log(req.params.id);
+    //console.log(req.params.id);
     Course.findById(req.params.id, function(err, course){
         if(err){
             console.log(err);
@@ -36,7 +36,7 @@ router.post("/", middleware.isLoggedIn, function(req, res){
                topic.save();
                course.topics.push(topic);
                course.save();
-               console.log(topic);
+               //console.log(topic);
                res.redirect('/courses/' + course._id);
            }
         });
