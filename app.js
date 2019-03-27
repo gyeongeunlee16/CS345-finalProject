@@ -14,7 +14,8 @@ var express     = require("express"),
 //requiring routes
 var topicRoutes    = require("./routes/topics"),
     courseRoutes = require("./routes/courses"),
-    indexRoutes      = require("./routes/index")
+    indexRoutes      = require("./routes/index"),
+    resourceRoutes = require("./routes/resources")
 
 //var url = process.env.DATABASEURL || 'mongodb://localhost/yelp_camp_v10';
 //mongoose.connect(url);
@@ -56,6 +57,7 @@ app.use(function(req, res, next){
 app.use("/", indexRoutes);
 app.use("/courses", courseRoutes);
 app.use("/courses/:id/topics", topicRoutes);
+app.use("/topics/:id/resources", resourceRoutes);
 
 
 app.listen(process.env.PORT, process.env.IP, function(){

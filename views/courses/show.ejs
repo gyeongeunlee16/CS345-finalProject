@@ -3,9 +3,8 @@
     <div class="row">
         
         <div class="col-md-9">
-            <!--
             <div class="thumbnail">
-                <img class="img-responsive" src="<%= course.image %>"> 
+                <img class="img-responsive" src="<%= course.image %>">
                 <div class="caption-full">
                     
                     <h4><a><%=course.name%></a></h4>
@@ -21,25 +20,23 @@
                     <% }%>
                 </div>
             </div>
-            -->
-            
             <div class="well">
                 <div class="text-right">
-                    <a class="btn btn-success" href="/topics/<%= topic._id %>/resources/new">Add New Resource</a>
+                    <a class="btn btn-success" href="/courses/<%= course._id %>/topics/new">Add New Topic</a>
                 </div>
                 <hr>
-                <% topic.resources.forEach(function(resource){ %>
+                <% course.topics.forEach(function(topic){ %>
                     <div class="row">
                         <div class="col-md-12">
-                            <strong><%= resource.author.username %></strong>
+                            <strong><%= topic.author.username %></strong>
                             <span class="pull-right">10 days ago</span>
                             <p>
-                                <%= resource.titel %> 
+                                <%= topic.text %> 
                             </p>
-                        <% if(currentUser && resource.author.id.equals(currentUser._id)){ %>
+                        <% if(currentUser && topic.author.id.equals(currentUser._id)){ %>
                             <a class="btn btn-xs btn-warning" 
-                               href="/topics/<%=topic._id %>/resources/<%=resource._id %>/edit">Edit</a>
-                            <form id="delete-form" action="/topics/<%=topic._id %>/resources/<%=resource._id %>?_method=DELETE" method="POST">
+                               href="/courses/<%=course._id %>/topics/<%=topic._id %>/edit">Edit</a>
+                            <form id="delete-form" action="/courses/<%=course._id %>/topics/<%=topic._id %>?_method=DELETE" method="POST">
                                 <input type="submit" class="btn btn-xs btn-danger" value="Delete">
                             </form>
                         <% } %>
