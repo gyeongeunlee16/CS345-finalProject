@@ -8,7 +8,7 @@ var middleware = require('../middleware');
 
 // SHOW - shows more info about one Topic, which is its resources
 router.get("/:id", function(req, res){
-    //find the course with provided ID
+    //find the topic with provided ID
     Topic.findById(req.params.id).populate("resources").exec(function(err, foundTopic){
         if(err || !foundTopic){
             req.flash('error', 'Topic not found');
