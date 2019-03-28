@@ -1,6 +1,6 @@
 var mongoose = require("mongoose");
 
-var topicSchema = mongoose.Schema({
+var topicSchema = new mongoose.Schema({
     text: String,
     author: {
         id: {

@@ -1,55 +1,12 @@
 <% include ../partials/header %>
-<div class="container">
-    <div class="row">
-        
-        <div class="col-md-9">
-            <!--
-            <div class="thumbnail">
-                <img class="img-responsive" src="<%= course.image %>"> 
-                <div class="caption-full">
-                    
-                    <h4><a><%=course.name%></a></h4>
-                    <p><%= course.description %></p>
-                    <p>
-                        <em>Submitted By <%= course.author.username %></em>
-                    </p>
-                    <% if(currentUser && course.author.id.equals(currentUser._id)){ %>
-                        <a class="btn btn-xs btn-warning" href="/courses/<%= course._id %>/edit">Edit</a>
-                        <form id="delete-form" action="/courses/<%= course._id %>?_method=DELETE" method="POST">
-                            <button class="btn btn-xs btn-danger">Delete</button>
-                        </form>
-                    <% }%>
-                </div>
-            </div>
-            -->
-            
-            <div class="well">
+<p>
+                        <em> <p>Topic Username</p> <%= topic.author.username %></em>
+                        <em> <p>Topic text</p><%= topic.text %></em>
+                        
                 <div class="text-right">
                     <a class="btn btn-success" href="/topics/<%= topic._id %>/resources/new">Add New Resource</a>
                 </div>
-                <hr>
-                <% topic.resources.forEach(function(resource){ %>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <strong><%= resource.author.username %></strong>
-                            <span class="pull-right">10 days ago</span>
-                            <p>
-                                <%= resource.titel %> 
-                            </p>
-                        <% if(currentUser && resource.author.id.equals(currentUser._id)){ %>
-                            <a class="btn btn-xs btn-warning" 
-                               href="/topics/<%=topic._id %>/resources/<%=resource._id %>/edit">Edit</a>
-                            <form id="delete-form" action="/topics/<%=topic._id %>/resources/<%=resource._id %>?_method=DELETE" method="POST">
-                                <input type="submit" class="btn btn-xs btn-danger" value="Delete">
-                            </form>
-                        <% } %>
-                        </div>
-                    </div>
-                <% }) %>
-            </div>
-        </div>
-    </div>
-</div>
+                    </p>
 
 <% include ../partials/footer %>
 

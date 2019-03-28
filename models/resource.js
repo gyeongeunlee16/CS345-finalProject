@@ -1,6 +1,6 @@
 var mongoose = require("mongoose");
 
-var resourceSchema = mongoose.Schema({
+var resourceSchema = new mongoose.Schema({
     titel: String,
     description: String,
     author: {

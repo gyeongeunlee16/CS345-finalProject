@@ -9,7 +9,7 @@ middlewareObj.checkCourseOwnership = function (req, res, next){
     if(req.isAuthenticated()){
         Course.findById(req.params.id, function(err, foundCourse){
             if (err || !foundCourse){
-                req.flash('error', 'Course not found');
+                req.flash('error', 'course not found');
                 return res.redirect('/courses');
             }else{
                 
@@ -34,13 +34,13 @@ middlewareObj.checkCourseOwnership = function (req, res, next){
 middlewareObj.checkTopicOwnership = function(req, res, next){
     //if user logged in?
     if(req.isAuthenticated()){
-        Topic.findById(req.params.Topic_id, function(err, foundTopic){
+        Topic.findById(req.params.topic_id, function(err, foundTopic){
             if (err){
                 req.flash('error', 'Topic not found');
-                return res.redirect('/Courses');
+                return res.redirect('/courses');
             }else{
                 
-                //does user own the Topic?
+                //does user own the topic?
                 if (foundTopic.author.id.equals(req.user._id)){
                     next();
                 //otherwise, redirect
@@ -56,6 +56,35 @@ middlewareObj.checkTopicOwnership = function(req, res, next){
         res.redirect('back');
     }
 };
+
+middlewareObj.checkResourceOwnership = function(req, res, next){
+    //if user logged in?
+    if(req.isAuthenticated()){
+        Resource.findById(req.params.resource_id, function(err, foundResource){
+            if (err){
+                req.flash('error', 'Resource not found');
+                return res.redirect('/courses');
+            }else{
+                
+                //does user own the resource?
+                if (foundResource.author.id.equals(req.user._id)){
+                    next();
+                //otherwise, redirect
+                }else{
+                    req.flash('error', 'You do not have permission to do that');
+                    return res.redirect('back');
+                }
+            }
+            
+        });
+    //if not, redirect
+    }else{
+        res.redirect('back');
+    }
+};
+
+
+
 
 middlewareObj.isLoggedIn = function(req, res, next){
     if(req.isAuthenticated()){

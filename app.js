@@ -1,15 +1,16 @@
-var express     = require("express"),
-    app         = express(),
-    bodyParser  = require("body-parser"),
-    mongoose    = require("mongoose"),
-    flash       = require('connect-flash'),
-    passport    = require("passport"),
-    LocalStrategy = require("passport-local"),
-    Course  = require("./models/course"),
-    Topic     = require("./models/topic"),
-    User        = require("./models/user"),
-    seedDB      = require("./seeds"),
-    methodOverride = require('method-override');
+var express         = require("express"),
+    app             = express(),
+    bodyParser      = require("body-parser"),
+    mongoose        = require("mongoose"),
+    flash           = require('connect-flash'),
+    passport        = require("passport"),
+    LocalStrategy   = require("passport-local"),
+    Course          = require("./models/course"),
+    Topic           = require("./models/topic"),
+    Resource        = require("./models/resource"),
+    User            = require("./models/user"),
+    seedDB          = require("./seeds"),
+    methodOverride  = require('method-override');
     
 //requiring routes
 var topicRoutes    = require("./routes/topics"),
@@ -57,6 +58,7 @@ app.use(function(req, res, next){
 app.use("/", indexRoutes);
 app.use("/courses", courseRoutes);
 app.use("/courses/:id/topics", topicRoutes);
+//app.use("/courses/:id/topics/:id/resources", resourceRoutes
 app.use("/topics/:id/resources", resourceRoutes);
 
 

@@ -33,7 +33,7 @@ router.post("/", middleware.isLoggedIn, function(req, res){
             console.log(err);
         } else {
             //redirect back to courses page
-            console.log(newlyCreated);
+            //console.log(newlyCreated);
             res.redirect("/courses");
         }
     });
@@ -52,7 +52,7 @@ router.get("/:id", function(req, res){
             req.flash('error', 'Course not found');
             res.redirect('back');
         } else {
-            console.log(foundCourse)
+            //console.log(foundCourse)
             //render show template with that course
             res.render("courses/show", {course: foundCourse});
         }

@@ -83,6 +83,9 @@ router.delete('/:resource_id', middleware.checkResourceOwnership, function(req, 
     });
 });
 
+
+
+
 module.exports = router;
 
 

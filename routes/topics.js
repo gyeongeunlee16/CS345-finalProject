@@ -6,22 +6,6 @@ var middleware = require('../middleware');
 
 
 
-// SHOW - shows more info about one Topic, which is its resources
-router.get("/:id", function(req, res){
-    //find the topic with provided ID
-    Topic.findById(req.params.id).populate("resources").exec(function(err, foundTopic){
-        if(err || !foundTopic){
-            req.flash('error', 'Topic not found');
-            res.redirect('back');
-        } else {
-            console.log(foundTopic)
-            //render show template with that course
-            res.render("topics/show", {topic: foundTopic});
-        }
-    });
-});
-
-
 
 //Topics New
 router.get("/new", middleware.isLoggedIn, function(req, res){
@@ -102,5 +86,20 @@ router.delete('/:topic_id', middleware.checkTopicOwnership, function(req, res){
     });
 });
 
+
+// SHOW - shows more info about one Topic, which is its resources
+router.get("/:topic_id", middleware.isLoggedIn,function(req, res){
+    //find the topic with provided ID
+    Topic.findById(req.params.topic_id, function(err, foundTopic){
+        if(err || !foundTopic){
+            req.flash('error', 'Topic not found');
+            //res.redirect('back');
+        } else {
+            console.log("show more info topic is working!!")
+            //render show template with that course
+            res.render("topics/show", {topic: foundTopic});
+        }
+    });
+});
 module.exports = router;
 
