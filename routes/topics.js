@@ -4,22 +4,6 @@ var Course = require("../models/course");
 var Topic = require("../models/topic");
 var middleware = require('../middleware');
 
-
-
-
-//Topics New
-router.get("/new", middleware.isLoggedIn, function(req, res){
-    // find course by id
-    //console.log(req.params.id);
-    Course.findById(req.params.id, function(err, course){
-        if(err){
-            console.log(err);
-        } else {
-             res.render("topics/new", {course: course});
-        }
-    })
-});
-
 //Topics Create
 router.post("/", middleware.isLoggedIn, function(req, res){
    //lookup course using ID
@@ -46,6 +30,39 @@ router.post("/", middleware.isLoggedIn, function(req, res){
        }
    });
 });
+
+
+
+//Topics New
+router.get("/new", middleware.isLoggedIn, function(req, res){
+    // find course by id
+    //console.log(req.params.id);
+    Course.findById(req.params.id, function(err, course){
+        if(err){
+            console.log(err);
+        } else {
+             res.render("topics/new", {course: course});
+        }
+    })
+});
+
+
+
+// SHOW - shows more info about one Topic, which is its resources
+router.get("/:topic_id", middleware.isLoggedIn,function(req, res){
+    //find the topic with provided ID
+    Topic.findById(req.params.topic_id, function(err, foundTopic){
+        if(err || !foundTopic){
+            req.flash('error', 'Topic not found');
+            res.redirect('back');
+        } else {
+            //console.log("show more info topic is working!!")
+            //render show template with that course
+            res.render("topics/show", {topic: foundTopic});
+        }
+    });
+});
+
 
 // EDIT ROUTE
 router.get('/:topic_id/edit', middleware.checkTopicOwnership, function(req, res){
@@ -87,19 +104,6 @@ router.delete('/:topic_id', middleware.checkTopicOwnership, function(req, res){
 });
 
 
-// SHOW - shows more info about one Topic, which is its resources
-router.get("/:topic_id", middleware.isLoggedIn,function(req, res){
-    //find the topic with provided ID
-    Topic.findById(req.params.topic_id, function(err, foundTopic){
-        if(err || !foundTopic){
-            req.flash('error', 'Topic not found');
-            //res.redirect('back');
-        } else {
-            console.log("show more info topic is working!!")
-            //render show template with that course
-            res.render("topics/show", {topic: foundTopic});
-        }
-    });
-});
+
 module.exports = router;
 
