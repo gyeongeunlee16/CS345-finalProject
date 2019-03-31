@@ -1,7 +1,7 @@
 var mongoose = require("mongoose");
 
 var resourceSchema = new mongoose.Schema({
-    titel: String,
+    title: String,
     description: String,
     author: {
         id: {

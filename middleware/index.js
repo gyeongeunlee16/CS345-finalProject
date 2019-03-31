@@ -9,7 +9,7 @@ middlewareObj.checkCourseOwnership = function (req, res, next){
     if(req.isAuthenticated()){
         Course.findById(req.params.id, function(err, foundCourse){
             if (err || !foundCourse){
-                req.flash('error', 'course not found');
+                req.flash('error', 'Course not found');
                 return res.redirect('/courses');
             }else{
                 

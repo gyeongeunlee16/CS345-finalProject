@@ -63,6 +63,6 @@ app.use("/topics/:id/resources", resourceRoutes);
 
 
 app.listen(process.env.PORT, process.env.IP, function(){
-   console.log("The YelpCamp Server Has Started!");
+   console.log("Final project Has Started!");
 });
 

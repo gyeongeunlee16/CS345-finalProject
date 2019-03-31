@@ -23,7 +23,7 @@ router.post("/", middleware.isLoggedIn, function(req, res){
                topic.save();
                course.topics.push(topic);
                course.save();
-               //console.log(topic);
+               //console.log(course);
                res.redirect('/courses/' + course._id);
            }
         });
@@ -51,13 +51,21 @@ router.get("/new", middleware.isLoggedIn, function(req, res){
 // SHOW - shows more info about one Topic, which is its resources
 router.get("/:topic_id", middleware.isLoggedIn,function(req, res){
     //find the topic with provided ID
-    Topic.findById(req.params.topic_id, function(err, foundTopic){
+    //populate is very important in order to link topic to its resources
+    Topic.findById(req.params.topic_id).populate("resources").exec(function(err, foundTopic){
         if(err || !foundTopic){
             req.flash('error', 'Topic not found');
             res.redirect('back');
         } else {
             //console.log("show more info topic is working!!")
             //render show template with that course
+            //console.log(foundTopic);
+            //console.log("Topic is", foundTopic);
+            //foundTopic.resources.forEach(function(resource){ 
+            //  console.log("Resource is ", resource);
+            //});
+                        
+            
             res.render("topics/show", {topic: foundTopic});
         }
     });

@@ -20,13 +20,14 @@ router.post("/", middleware.isLoggedIn, function(req, res){
                //add username and id to resource
                resource.author.id = req.user._id;
                resource.author.username = req.user.username;
+            
                //save the newly created resource
                resource.save();
+               //console.log("resource is", resource);
                //push the newly created resource into topic
                topic.resources.push(resource);
                //save the newly updated topic
                topic.save();
-               console.log(topic);
                //res.redirect('/topics/' + topic._id);
                
                //I need to fix this: when add a new resource to current topic, it cannot jump to the topic page
@@ -44,7 +45,7 @@ router.post("/", middleware.isLoggedIn, function(req, res){
 router.get("/new", middleware.isLoggedIn, function(req, res){
     // find topic by id
     //console.log(req.params.id);
-    console.log("==============");
+    //console.log("==============");
   
     Topic.findById(req.params.id, function(err, topic){
         if(err){
