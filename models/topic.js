@@ -9,7 +9,7 @@ var topicSchema = new mongoose.Schema({
         },
         username: String
     },
-    resouces: [
+    resources: [
       {
          type: mongoose.Schema.Types.ObjectId,
          ref: "Resource"

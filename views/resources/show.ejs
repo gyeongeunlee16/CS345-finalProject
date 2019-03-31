@@ -1,0 +1,13 @@
+<% include ../partials/header %>
+<p>
+                        <em> <p>Topic Username</p> <%= topic.author.username %></em>
+                        <em> <p>Topic text</p><%= topic.text %></em>
+                        
+                <div class="text-right">
+                    <a class="btn btn-success" href="/courses/<%=course._id %>/topics/<%= topic._id %>/resources/new">Add New Resource</a>
+                </div>
+                    </p>
+
+<% include ../partials/footer %>
+
+

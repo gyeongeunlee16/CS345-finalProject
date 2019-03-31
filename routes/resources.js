@@ -2,20 +2,8 @@ var express = require("express");
 var router  = express.Router({mergeParams: true});
 var Topic = require("../models/topic");
 var Resource = require("../models/resource");
+var Course = require("../models/course");
 var middleware = require('../middleware');
-
-//Resources New
-router.get("/new", middleware.isLoggedIn, function(req, res){
-    // find topic by id
-    //console.log(req.params.id);
-    Topic.findById(req.params.id, function(err, topic){
-        if(err){
-            console.log(err);
-        } else {
-             res.render("resources/new", {topic: topic});
-        }
-    })
-});
 
 //Resources Create
 router.post("/", middleware.isLoggedIn, function(req, res){
@@ -23,7 +11,7 @@ router.post("/", middleware.isLoggedIn, function(req, res){
    Topic.findById(req.params.id, function(err, topic){
        if(err){
            console.log(err);
-           res.redirect("/topics");
+           res.redirect("back");
        } else {
         Resource.create(req.body.resource, function(err, resource){
            if(err){
@@ -32,21 +20,63 @@ router.post("/", middleware.isLoggedIn, function(req, res){
                //add username and id to resource
                resource.author.id = req.user._id;
                resource.author.username = req.user.username;
-               //save resource
+               //save the newly created resource
                resource.save();
+               //push the newly created resource into topic
                topic.resources.push(resource);
+               //save the newly updated topic
                topic.save();
-               //console.log(resource);
-               res.redirect('/topics/' + topic._id);
-           }
+               console.log(topic);
+               //res.redirect('/topics/' + topic._id);
+               
+               //I need to fix this: when add a new resource to current topic, it cannot jump to the topic page
+               res.redirect('back'); 
+           } 
         });
        }
    });
 });
 
+
+
+
+//Resources New
+router.get("/new", middleware.isLoggedIn, function(req, res){
+    // find topic by id
+    //console.log(req.params.id);
+    console.log("==============");
+  
+    Topic.findById(req.params.id, function(err, topic){
+        if(err){
+            console.log(err);
+        } else {
+            res.render("resources/new", {topic: topic});
+            }
+        })
+ 
+});
+
+
+
+// SHOW - shows more info about one Resource, which is its resources
+router.get("/:resource_id", middleware.isLoggedIn,function(req, res){
+    //find the resource with provided ID
+    Resource.findById(req.params.resource_id, function(err, foundResource){
+        if(err || !foundResource){
+            req.flash('error', 'Resource not found');
+            res.redirect('back');
+        } else {
+            //console.log("show more info resource is working!!")
+            //render show template with that topic
+            res.render("resources/show", {resource: foundResource});
+        }
+    });
+});
+
+
 // EDIT ROUTE
 router.get('/:resource_id/edit', middleware.checkResourceOwnership, function(req, res){
-    Topic.findById(req.params.id).populate("resources").exec(function(err, foundTopic){
+    Topic.findById(req.params.idx).populate("resources").exec(function(err, foundTopic){
         if(err || !foundTopic){
             req.flash('error', 'Topic not found');
             return res.redirect('back');
@@ -55,7 +85,7 @@ router.get('/:resource_id/edit', middleware.checkResourceOwnership, function(req
             if (err){
                 res.redirect('back');
             }else{
-                res.render('resources/edit', {topic_id: req.params.id, resource:foundResource});
+                res.render('resources/edit', {course_id: req.params.id, topic_id: req.params.idx, resource:foundResource});
             }
         });
     });
@@ -85,8 +115,6 @@ router.delete('/:resource_id', middleware.checkResourceOwnership, function(req, 
 
 
 
-
 module.exports = router;
-
 
 

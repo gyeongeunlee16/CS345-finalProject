@@ -33,9 +33,11 @@
                             <p>
                                 <%= topic.text %> 
                             </p>
+                            
                             <p>
-                                <a href="/courses/<%= course._id %>/topics/<%=topic._id %>" class="btn btn-primary">More Info</a>
+                                <a href="/courses/<%=course._id %>/topics/<%=topic._id %>" class="btn btn-primary">More Info</a>
                             </p>
+
                         <% if(currentUser && topic.author.id.equals(currentUser._id)){ %>
                             <a class="btn btn-xs btn-warning" 
                                href="/courses/<%=course._id %>/topics/<%=topic._id %>/edit">Edit</a>

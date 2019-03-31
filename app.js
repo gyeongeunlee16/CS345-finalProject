@@ -58,7 +58,7 @@ app.use(function(req, res, next){
 app.use("/", indexRoutes);
 app.use("/courses", courseRoutes);
 app.use("/courses/:id/topics", topicRoutes);
-//app.use("/courses/:id/topics/:id/resources", resourceRoutes
+//app.use("/courses/:id/topics/:idx/resources", resourceRoutes);
 app.use("/topics/:id/resources", resourceRoutes);
 
 

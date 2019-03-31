@@ -1,12 +1,30 @@
 <% include ../partials/header %>
 <p>
-                        <em> <p>Topic Username</p> <%= topic.author.username %></em>
-                        <em> <p>Topic text</p><%= topic.text %></em>
+                      
+                        <em> Resources</em>
+                      
+               
                         
                 <div class="text-right">
                     <a class="btn btn-success" href="/topics/<%= topic._id %>/resources/new">Add New Resource</a>
                 </div>
-                    </p>
+                
+
+
+   <% topic.resources.forEach(function(resource){ %>
+          
+                        
+                            <p>
+                                <%= resource.titel %> 
+                                <%= resource.description %> 
+                            </p>
+                            
+                            
+                <% }) %>
+
+
+
+</p>
 
 <% include ../partials/footer %>
 
