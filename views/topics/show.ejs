@@ -16,8 +16,17 @@
                         
                             <p>
                                 <p><%= resource.title %></p>
-                                <%= resource.description %> 
+                                <p><%= resource.description %></p>
+                                <a href='<%= resource.link %>'><%= resource.link %></a>
                             </p>
+                            
+                            <% if(currentUser && resource.author.id.equals(currentUser._id)){ %>
+                            <a class="btn btn-xs btn-warning" 
+                               href="/topics/<%=topic._id %>/resources/<%=resource._id %>/edit">Edit</a>
+                            <form id="delete-form" action="/topics/<%=topic._id %>/resources/<%=resource._id %>?_method=DELETE" method="POST">
+                                <input type="submit" class="btn btn-xs btn-danger" value="Delete">
+                            </form>
+                        <% } %>
                             
                             
                 <% }) %>

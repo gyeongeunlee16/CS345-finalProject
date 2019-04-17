@@ -1,0 +1,57 @@
+<% include ../partials/header %>
+<div class="container">
+    <div class="row">
+        
+        <div class="col-md-9">
+            <div class="thumbnail">
+                <div class="caption-full">
+                    
+                    <h4><a><%=question.name%></a></h4>
+                    <p><%= question.description %></p>
+                    <code><%= question.code %></code>
+                    <p>
+                        <em>Submitted By <%= question.author.username %></em>
+                    </p>
+                    <% if(currentUser && question.author.id.equals(currentUser._id)){ %>
+                        <a class="btn btn-xs btn-warning" href="/questions/<%= question._id %>/edit">Edit</a>
+                        <form id="delete-form" action="/questions/<%= question._id %>?_method=DELETE" method="POST">
+                            <button class="btn btn-xs btn-danger">Delete</button>
+                        </form>
+                    <% }%>
+                </div>
+            </div>
+            <div class="well">
+                <div class="text-right">
+                    <a class="btn btn-success" href="/questions/<%= question._id %>/replies/new">Add New Reply</a>
+                </div>
+                <hr>
+                <% question.replies.forEach(function(reply){ %>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <strong><%= reply.author.username %></strong>
+                            <p>
+                                <%= reply.text %> 
+                            </p>
+                            <code>
+                                <%= reply.code %> 
+                            </code>
+                            
+
+
+                        <% if(currentUser && reply.author.id.equals(currentUser._id)){ %>
+                            <a class="btn btn-xs btn-warning" 
+                               href="/questions/<%=question._id %>/replies/<%=reply._id %>/edit">Edit</a>
+                            <form id="delete-form" action="/questions/<%=question._id %>/replies/<%=reply._id %>?_method=DELETE" method="POST">
+                                <input type="submit" class="btn btn-xs btn-danger" value="Delete">
+                            </form>
+                        <% } %>
+                        </div>
+                    </div>
+                <% }) %>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% include ../partials/footer %>
+

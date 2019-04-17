@@ -8,15 +8,24 @@ var express         = require("express"),
     Course          = require("./models/course"),
     Topic           = require("./models/topic"),
     Resource        = require("./models/resource"),
+    
+    //Added for forum
+    Question        = require("./models/question"),
+    Reply           = require("./models/reply"),
+    
     User            = require("./models/user"),
     seedDB          = require("./seeds"),
     methodOverride  = require('method-override');
     
 //requiring routes
-var topicRoutes    = require("./routes/topics"),
-    courseRoutes = require("./routes/courses"),
-    indexRoutes      = require("./routes/index"),
-    resourceRoutes = require("./routes/resources")
+var topicRoutes     = require("./routes/topics"),
+    courseRoutes    = require("./routes/courses"),
+    indexRoutes     = require("./routes/index"),
+    resourceRoutes  = require("./routes/resources"),
+    
+    //Added for forum
+    questionRoutes  = require("./routes/questions"),
+    replyRoutes     = require("./routes/replies");
 
 //var url = process.env.DATABASEURL || 'mongodb://localhost/yelp_camp_v10';
 //mongoose.connect(url);
@@ -55,11 +64,18 @@ app.use(function(req, res, next){
    next();
 });
 
+
 app.use("/", indexRoutes);
 app.use("/courses", courseRoutes);
 app.use("/courses/:id/topics", topicRoutes);
 //app.use("/courses/:id/topics/:idx/resources", resourceRoutes);
 app.use("/topics/:id/resources", resourceRoutes);
+
+
+//Added for forum
+app.use("/questions", questionRoutes);
+app.use("/questions/:id/replies", replyRoutes);
+
 
 
 app.listen(process.env.PORT, process.env.IP, function(){

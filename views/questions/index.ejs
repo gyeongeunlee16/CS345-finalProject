@@ -1,0 +1,33 @@
+<% include ../partials/header %> 
+
+ <div class="container">
+     <header class="jumbotron">
+         <div class="container">
+             <h1>Welcome To Earlham CS!</h1>
+             <p>View our CS questions</p>
+             <p>
+                <a class="btn btn-primary btn-large" href="/questions/new">Add New Question</a>
+             </p>
+         </div>
+     </header>
+     
+     <div class="row text-center" style="display:flex; flex-wrap: wrap;">
+        <% questions.forEach(function(question){ %>
+            <div class="col-md-3 col-sm-6">
+                <div class="thumbnail">
+                   <img src="<%= question.image %>">
+                   <div class="caption">
+                       <h4><%= question.name %></h4>
+                   </div>
+                   <p>
+                       <a href="/questions/<%= question._id %>" class="btn btn-primary">More Info</a>
+                   </p>
+                </div>
+            </div>
+        <% }); %>
+    </div>
+</div>
+
+<% include ../partials/footer %>
+
+

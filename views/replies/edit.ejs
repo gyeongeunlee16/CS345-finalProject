@@ -1,0 +1,23 @@
+<% include ../partials/header %>
+<div class="container">
+    <div class="row">
+        <h1 style="text-align: center">Edit reply</h1>
+        <div style="width: 30%; margin: 25px auto;">
+            <form action="/questions/<%= question_id %>/replies/<%= reply._id %>/?_method=PUT" method="POST">
+                <div class="form-group">
+                    <input class="form-control" type="text" name="reply[text]" value='<%= reply.text %>'>
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="text" name="reply[code]" value='<%= reply.code %>'>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-lg btn-primary btn-block">Submit!</button>
+                </div>
+            </form>
+            <a href="/questions">Go Back</a>
+        </div>
+    </div>
+</div>
+<% include ../partials/footer %>
+
+

@@ -58,7 +58,7 @@ router.get("/new", middleware.isLoggedIn, function(req, res){
 });
 
 
-
+/*
 // SHOW - shows more info about one Resource, which is its resources
 router.get("/:resource_id", middleware.isLoggedIn,function(req, res){
     //find the resource with provided ID
@@ -73,11 +73,11 @@ router.get("/:resource_id", middleware.isLoggedIn,function(req, res){
         }
     });
 });
-
+*/
 
 // EDIT ROUTE
 router.get('/:resource_id/edit', middleware.checkResourceOwnership, function(req, res){
-    Topic.findById(req.params.idx).populate("resources").exec(function(err, foundTopic){
+    Topic.findById(req.params.id).populate("resources").exec(function(err, foundTopic){
         if(err || !foundTopic){
             req.flash('error', 'Topic not found');
             return res.redirect('back');
@@ -86,19 +86,21 @@ router.get('/:resource_id/edit', middleware.checkResourceOwnership, function(req
             if (err){
                 res.redirect('back');
             }else{
-                res.render('resources/edit', {course_id: req.params.id, topic_id: req.params.idx, resource:foundResource});
+                res.render('resources/edit', {topic_id: req.params.id, resource:foundResource});
             }
         });
     });
 });
 
+//Notice the difference between this UPDATE route and the UPDATE route for topic
+//Cannot go back to TOPIC page because it requires COURSE ID to show TOPIC page
 // UPDATE ROUTE
 router.put('/:resource_id', middleware.checkResourceOwnership, function(req, res){
     Resource.findByIdAndUpdate(req.params.resource_id, req.body.resource, function(err, updatedResource){
         if (err){
             res.redirect('back');
         }else{
-            res.redirect('/topics/' + req.params.id);
+            res.redirect('back');
         }
     });
 });
@@ -109,7 +111,7 @@ router.delete('/:resource_id', middleware.checkResourceOwnership, function(req, 
         if (err){
             res.redirect('back');
         }else{
-            res.redirect('/topics/' + req.params.id);
+            res.redirect('back');
         }
     });
 });

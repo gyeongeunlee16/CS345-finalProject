@@ -1,10 +1,8 @@
 var mongoose = require("mongoose");
 
-var resourceSchema = new mongoose.Schema({
-    title: String,
-    description: String,
-    link: String,
-    
+var replySchema = new mongoose.Schema({
+    text: String,
+    code: String,
     author: {
         id: {
             type: mongoose.Schema.Types.ObjectId,
@@ -12,8 +10,8 @@ var resourceSchema = new mongoose.Schema({
         },
         username: String
     }
+    
 });
 
-module.exports = mongoose.model("Resource", resourceSchema);
-
+module.exports = mongoose.model("Reply", replySchema);
 
