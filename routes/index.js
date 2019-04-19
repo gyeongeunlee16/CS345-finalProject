@@ -23,7 +23,11 @@ router.post("/register", function(req, res){
         }
         passport.authenticate("local")(req, res, function(){
             req.flash('success', 'Welcome to Earlham CS ' + user.username + '!');
-            return res.redirect("/"); 
+            //return res.redirect("/"); 
+            //console.log("returnTo is",req.session.returnTo);
+            //console.log("original is ",req.originalUrl);
+            res.redirect(req.session.returnTo || '/');
+            delete req.session.returnTo;
         });
     });
 });
@@ -33,13 +37,32 @@ router.get("/login", function(req, res){
    res.render("login", {message: req.flash('error')}); 
 });
 
+/*
 //handling login logic
-router.post("/login", passport.authenticate("local", 
+router.post("/login", passport.authenticate("local",
     {
         successRedirect: "/",
         failureRedirect: "/login"
-    }), function(req, res){
+    }
+    ), function(req, res){
+        res.redirect(req.session.returnTo || '/');
+        delete req.session.returnTo;
 });
+*/
+
+
+//handle login logic
+router.post("/login", function(req, res){
+        passport.authenticate("local")(req, res, function(){
+            //return res.redirect("/"); 
+            //console.log("returnTo is",req.session.returnTo);
+            //console.log("original is ",req.originalUrl);
+            res.redirect(req.session.returnTo || '/');
+            delete req.session.returnTo;
+        });
+    });
+
+
 
 // logout route
 router.get("/logout", function(req, res){

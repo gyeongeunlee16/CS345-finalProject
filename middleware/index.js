@@ -157,6 +157,8 @@ middlewareObj.isLoggedIn = function(req, res, next){
         return next();
     }
     req.flash('error', 'Please log in first!');
+    
+    req.session.returnTo = req.originalUrl;
     return res.redirect("/login");
 };
 
