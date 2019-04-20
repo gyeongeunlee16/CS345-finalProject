@@ -64,8 +64,10 @@ router.get("/:topic_id", middleware.isLoggedIn,function(req, res){
             //foundTopic.resources.forEach(function(resource){ 
             //  console.log("Resource is ", resource);
             //});
-                        
-            
+             
+            //This line below keep the url of show page (The resources of one topic)  
+            //So that it can return to this url after adding a new resource or edit a current resource
+            req.session.returnTo = req.originalUrl; 
             res.render("topics/show", {topic: foundTopic});
         }
     });

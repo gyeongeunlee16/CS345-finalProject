@@ -30,8 +30,10 @@ router.post("/", middleware.isLoggedIn, function(req, res){
                topic.save();
                //res.redirect('/topics/' + topic._id);
                
-               //I need to fix this: when add a new resource to current topic, it cannot jump to the topic page
-               res.redirect('back'); 
+               //This line below redirect to the url of show page (The resources of one topic)  
+               //the url has been remembered by routes/topics.js show page
+               res.redirect(req.session.returnTo || '/');
+               delete req.session.returnTo;
            } 
         });
        }
@@ -100,7 +102,12 @@ router.put('/:resource_id', middleware.checkResourceOwnership, function(req, res
         if (err){
             res.redirect('back');
         }else{
-            res.redirect('back');
+            //res.redirect('back');
+            
+            //This line below redirect to the url of show page (The resources of one topic)  
+            //the url has been remembered by routes/topics.js show page
+            res.redirect(req.session.returnTo || '/');
+            delete req.session.returnTo;
         }
     });
 });
