@@ -37,7 +37,6 @@ mongoose.connect('mongodb+srv://c:de3s2VTZ5dpXY_K@cluster0-rwskd.mongodb.net/tes
 //mongoose.connect(url);
 
 
-
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
@@ -76,8 +75,60 @@ app.use("/topics/:id/resources", resourceRoutes);
 app.use("/questions", questionRoutes);
 app.use("/questions/:id/replies", replyRoutes);
 
+//Compiler
 
+app.post('/compiler', function(req, res){
+    var request = require('request');
 
+    var program = {
+        script : req.body.sourceCode,
+        language: req.body.language,
+        versionIndex: "0",
+        clientId: "9af9eaa3d2ff7be1240f83af576923c",
+        clientSecret:"c6b9d6bdfedf151896a23a9701aa3bd062a5093f4e24f3db323dd1c36a0430c6"
+    };
+    request({
+        url: 'https://api.jdoodle.com/execute',
+        method: "POST",
+        json: program
+    },
+    function (error, response, body) {
+        console.log('error:', error);
+        console.log('statusCode:', response && response.statusCode);
+        console.log('body:', body.output);
+        
+        var string = encodeURIComponent(body.output);
+        res.redirect('/compiler?valid=' + string);
+    });
+    
+});
+
+app.get('/compiler', function(req,res){
+    var passedVariable = req.query.valid;
+    res.render('compiler',{output: passedVariable});
+});
+/*
+//The compiler
+var request = require('request');
+
+var program = {
+    script : "print('new world')",
+    language: "python3",
+    versionIndex: "0",
+    clientId: "9af9eaa3d2ff7be1240f83af576923c",
+    clientSecret:"c6b9d6bdfedf151896a23a9701aa3bd062a5093f4e24f3db323dd1c36a0430c6"
+};
+request({
+    url: 'https://api.jdoodle.com/execute',
+    method: "POST",
+    json: program
+},
+function (error, response, body) {
+    console.log('error:', error);
+    console.log('statusCode:', response && response.statusCode);
+    console.log('body:', body.output);
+});
+*/
 app.listen(process.env.PORT, process.env.IP, function(){
    console.log("Final project Has Started!");
 });
