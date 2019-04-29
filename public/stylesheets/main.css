@@ -17,3 +17,158 @@
 .delete-form{
     display: inline;
 }
+
+.center {
+  padding: 30px;
+  text-align: center;
+}
+
+.jumbotron {
+    height: 300px;
+    color: white;
+}
+
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  display: inline;
+  margin-left: 30px;
+  margin-right:30px;
+}
+
+.navbar.navbar-expand-md{
+    background-color: transparent;
+}
+
+.nav.navbar-nav.ml-auto li a{
+    color: black;
+    font-size: large;
+}
+.nav.navbar-nav.ml-auto li a:hover{
+    color: white;
+}
+.navbar-brand{
+    color: #8B0000;
+    font-size: 18pt;
+}
+.navbar-brand:hover{
+    color: black;
+}
+
+.form-control{
+    border-radius: 0rem;
+}
+
+.a_class {
+    font-size: 150px;
+    
+} 
+
+html{
+    height:100%;
+}
+body{
+ width:100%;
+ background: white;
+}
+.list-group-item{
+    background-color: transparent;
+}
+.jumbotron.jumbotron-fluid{
+   background-color: #6DD5FA;
+} 
+
+.btn.btn-info.btn-lg:hover{
+    color: white;
+}
+
+.card {
+    height: 100%;
+    background-color: transparent;
+    margin-top: 50px;
+
+}
+
+.card-signin {
+  border: 0;
+  border-radius: 1rem;
+  box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
+}
+
+.card-signin .card-title {
+  margin-bottom: 2rem;
+  font-weight: 300;
+  font-size: 1.5rem;
+}
+
+.card-signin .card-body {
+  padding: 2rem;
+}
+.card-header {
+    background-color: transparent;
+    border-bottom-color:transparent;
+    border-top: none;
+    border-radius: 0;
+}
+.card-footer {
+    border-bottom-color:transparent;
+    border-top: none;
+    border-radius: 0;
+}
+
+
+.btn.btn-success{
+    margin-bottom: 20px;
+}
+
+.list-group.list-group-item h5{
+    color: black;
+}
+.btn {
+    white-space:normal !important;
+    word-wrap: break-word; 
+}
+/*
+.card-body.w-50{
+    margin-left: 400px;
+}
+
+#F37335 - border color and buttons
+*/
+#topic-card{
+    margin-top: 20px;
+    color: black;
+    max-width: 1300px;
+    border-top: 0;
+    border-left: 0;
+}
+
+#topic-actions{
+    margin-top: 20px;
+    color: black;
+    max-width: 50px;
+    border: 0;
+    margin-left: 40px;
+}
+
+#topic-actions .btn-group-vertical{
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+#no-border{
+    border:0;
+}
+
+#nav-item-hover li a{
+    color: black;
+}
+
+#nav-item-hover a{
+    font-size: 1.2em;
+}

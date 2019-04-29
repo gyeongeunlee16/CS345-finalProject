@@ -1,116 +1,65 @@
-#YelpCamp
+This is a web application with resources tailored to the need of the Computer Science students at Earlham College.
 
-##Initial Setup
-* Add Landing Page
-* Add Campgrounds Page that lists all campgrounds
+To visit the website, go to ..........
 
-Each Campground has:
-   * Name
-   * Image
+At our homepage, you can find three tools that we offer as specified below.
 
-##Layout and Basic Styling
-* Create our header and footer partials
-* Add in Bootstrap
+1) Resource Page
+This is where users can upload resources for each CS courses at Earlham.
 
-##Creating New Campgrounds
-* Setup new campground POST route
-* Add in body-parser
-* Setup route to show form
-* Add basic unstyled form
+After you click on this tool, a list of Computer Science classes offered at Earlham will appear. When you click on each class, a list of Topics taught in 
+each course will appear. 
 
-##Style the campgrounds page
-* Add a better header/title
-* Make campgrounds display in a grid
+After you click on a topic, you will see a list of Resources uploaded by the users. These resources are in the form of URLs. You can click on any URLs.
+Each resource has a title, a description, and a link. 
+You can only see the Edit and Delete button of resources that you upload. (Once you login)
 
-##Style the Navbar and Form
-* Add a navbar to all templates
-* Style the new campground form
+To create a new Resource, click on create new resource located in any Topic page. For example, to create a new resource for Topic "Grpahs" of Class "CS 310-Algorithms",
+click on CS 310: Algorithms > Graphs > Create a new Resource. A form to create a new resource will appear. Fill in the form and hit submit.
 
-##Add Mongoose
-* Install and configure Mongoose
-* Setup campground model
-* Use campground model inside of our routes
+To Edit a current Resource, login with the username and password you used to create the resource, then navigate to the page that the resource is posted. You 
+will be able to see the Edit button of the resources that you have created. Click on the Edit button. You will be taken to an Edit page where the current values
+of the resource, such as Title, Description, and URL, will be preserved and shown on the Edit form so that you can continue editing the resource with their 
+previous values.
 
-##Show Page
-* Review the RESTful routes we've seen so far
-* Add description to our campground model
-* Show db.collection.drop()
-* Add a show route/template
+To Delete a current Resource, login with the username and password you used to create the resource, then navigate to the page that the resource is posted. You 
+will be able to see the Delete button of the resources that you have created. Click on the Delete button. You will be redirected to the Topic page that prevously
+contain the resource. Now you can see the resource has been deleted from the Topic Page.
 
-##Refactor Mongoose Code
-* Create a models directory
-* Use module.exports
-* Require everything correctly!
+Note:
+Topics: The Topics in each Course are sorted and displayed in alphabetical order.
+Resource: You can like and dislike a resource. The Resources are sorted and displayed based on the number of like/dislike.
+You will be able to see the onwers of each resource.
 
-##Add Seeds File
-* Add a seeds.js file
-* Run the seeds file every time the server starts
+2) Forum Page
+This is where users can ask a question and answer other people questions.
 
-##Add the Comment model!
-* Make our errors go away!
-* Display comments on campground show page
+At the main page of the Forum, all of the questions are displayed. However, only a portion of the questions are visible. You have to click on a particular
+question to read its details and replies.
 
-##Comment New/Create
-* Discuss nested routes
-* Add the comment new and create routes
-* Add the new comment form
+After you click on a question, you can see the details of the questions and the replies. 
 
-##Style Show Page
-* Add sidebar to show page
-* Display comments nicely
+You can add a new question or a reply. You can also edit and delete your questions or replies.
 
-##Finish Styling Show Page
-* Add public directory
-* Add custom stylesheet
+You also have the ability to add code to your questions and replies. The code portion will then be highlighted. You can make use of our Code Editor/Compiler to 
+edit your code before including it in your post.
 
-##Auth Pt. 1 - Add User Model
-* Install all packages needed for auth
-* Define User model 
+Note:
+You will be able to see the owner of each question and replies.
+You have to login to be able to see details of the questions and replies.
 
-##Auth Pt. 2 - Register
-* Configure Passport
-* Add register routes
-* Add register template
+3) Code Editor and Compiler
+This is a Code Editor/Compiler where you can edit and run your program. 
+We support a wide variety of languages, such as Python, C, C++, Java, etc. Click on the drop down menu to see the complete list of the languages that we support.
+We support code highlighting and automatic indentation.
 
-##Auth Pt. 3 - Login
-* Add login routes
-* Add login template
+You can hit run to compile your program. The output will be displayed in the OUTPUT box. You will still be able to see your current code and continue editing 
+even after your program is compiled. (The current input will not be erased.)
 
-##Auth Pt. 4 - Logout/Navbar
-* Add logout route
-* Prevent user from adding a comment if not signed in
-* Add links to navbar
-
-##Auth Pt. 5 - Show/Hide Links
-* Show/hide auth links in navbar 
-
-##Refactor The Routes
-* Use Express router to reoragnize all routes
-
-##Users + Comments
-* Associate users and comments
-* Save author's name to a comment automatically
-
-##Users + Campgrounds
-* Prevent an unauthenticated user from creating a campground
-* Save username+id to newly created campground
-
-
-
-
-RESTFUL ROUTES
-
-name      url      verb    desc.
-===============================================
-INDEX   /dogs      GET   Display a list of all dogs
-NEW     /dogs/new  GET   Displays form to make a new dog
-CREATE  /dogs      POST  Add new dog to DB
-SHOW    /dogs/:id  GET   Shows info about one dog
-
-INDEX   /campgrounds
-NEW     /campgrounds/new
-CREATE  /campgrounds
-SHOW    /campgrounds/:id
-
-NEW     campgrounds/:id/comments/new    GET
-CREATE  campgrounds/:id/comments      POST
+Note:
+At certain points such as before being able to post anything to our Forum or Resource Page, you will be promted to login. After you login, you will be directed correctly 
+to the page that you wanted to go to before being promted to login.
+If you don't have an account, you can signup for a new account. The login/signup can be found at the top right corner in any pages of our app.
+At the top left corner of our app is a button that said "Earlham." You can click on this button to go back to the home page.
+When you are in a tool page, ie, Code Compiler page, you can stll navigate to the other two tool pages, ie. Resource and Forum pages, using our navigation bar 
+at the top.

@@ -4,6 +4,7 @@ var resourceSchema = new mongoose.Schema({
     title: String,
     description: String,
     link: String,
+    likes_count: Number,
     
     author: {
         id: {

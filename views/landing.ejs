@@ -2,11 +2,27 @@
 <html>
     <head>
         <title>Earlham CS</title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link rel="stylesheet" href="/stylesheets/landing.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript" async></script>
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     </head>
+    
     <body>
+    <nav class="navbar navbar-expand-md">
+
+        <ul class="nav navbar-nav ml-auto">
+            <% if(!currentUser){ %>
+                <li><a  href="/login" <i class="fa fa-user-circle "></i>Login</a></li>
+                <li><a href="/register" <i class="fa fa-user-plus "></i>Sign Up</a></li>
+            <% } else { %>
+                <li><a href="#" <i class="fa fa-user" aria-hidden="true"></i>  <%= currentUser.username %></a></li>
+                <li><a href="/logout">Logout</a></li>
+            <% } %>
+        </ul>
+
+    </nav>
+    
     
     <div class="container">
         <% if(error && error.length > 0){ %>
@@ -20,22 +36,54 @@
             </div>
         <% } %>
     </div>
-    
+    <%/*
     <div id="landing-header">
  		<h1>Welcome to Earlham CS!</h1>
 		<a href="/courses" class="btn btn-lg btn-success">View All Courses</a>
 		<a href="/questions" class="btn btn-lg btn-success">View All Questions</a>
-		<a href="/compiler" class="btn btn-lg btn-success">View Compiler</a>
 		
     </div>
+    */%>
     
-    <ul class="slideshow">
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-    </ul>
+
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container text-center">
+
+          <h1 class="display-2">Welcome to the Earlham CS Resources Guide</h1>
+                <p class="lead pb-4">All the tools necessary to succeed in your courses</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class ="card-deck text-center mx-auto">
+            <div class="col-sm-4">
+                <div class="card mb-3">
+                    <div class="card-header"><h3>Looking for Resources?</h3></div>
+                    <div class="card-body">
+                        <a href = '/courses' class="btn btn-secondary btn-lg mt-3" id="button-color">View All Courses</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card mb-3">
+                    <div class="card-header"><h3>Have Questions?</h3></div>
+                    <div class="card-body">
+                        <a href="/questions" class="btn btn-secondary btn-lg mt-3" id="button-color">View All Questions</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card mb-3">
+                    <div class="card-header"><h3>Wanna Test Your Code?</h3></div>
+                    <div class="card-body">
+                        <a href="/compiler" class="btn btn-secondary btn-lg mt-3" id="button-color">View Compiler</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
 
 <% include partials/footer %>
 

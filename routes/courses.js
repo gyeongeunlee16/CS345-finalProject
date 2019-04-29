@@ -2,7 +2,7 @@ var express = require("express");
 var router  = express.Router();
 var Course = require("../models/course");
 var middleware = require('../middleware');
-
+/*
 //INDEX - show all courses
 router.get("/", function(req, res){
     // Get all courses from DB
@@ -14,6 +14,30 @@ router.get("/", function(req, res){
        }
     });
 });
+*/
+
+//INDEX - show all courses
+router.get("/", function(req, res){
+    // Get all courses from DB
+    Course.find({}, function(err, allCourses){
+       if(err){ 
+           console.log(err);
+       } else {
+           //sort by course titles
+           allCourses.sort(function(a,b){
+                if (a.name > b.name){
+                    return 1;
+                }
+                else{
+                    return -1;
+                }
+           });
+        
+          res.render("courses/index",{courses:allCourses});//maybe work sorting here
+       }
+    });
+});
+
 
 //CREATE - add new course to DB
 router.post("/", middleware.isLoggedIn, function(req, res){
@@ -43,7 +67,7 @@ router.post("/", middleware.isLoggedIn, function(req, res){
 router.get("/new", middleware.isLoggedIn, function(req, res){
    res.render("courses/new"); 
 });
-
+/*
 // SHOW - shows more info about one course
 router.get("/:id", function(req, res){
     //find the course with provided ID
@@ -53,6 +77,30 @@ router.get("/:id", function(req, res){
             res.redirect('back');
         } else {
             //console.log(foundCourse)
+            //render show template with that course
+            res.render("courses/show", {course: foundCourse});
+        }
+    });
+});
+*/
+
+// SHOW - shows more info about one course = Show topics of that course
+router.get("/:id", function(req, res){
+    //find the course with provided ID
+    Course.findById(req.params.id).populate("topics").exec(function(err, foundCourse){ //foundcourse is one course
+        if(err || !foundCourse){
+            req.flash('error', 'Course not found');
+            res.redirect('back');
+        } else {
+            foundCourse.topics.sort(function(a,b){ //sort topics by topic names
+                if (a.text > b.text){
+                    return 1;
+                }
+                else{
+                    return -1;
+                }
+            });
+            
             //render show template with that course
             res.render("courses/show", {course: foundCourse});
         }

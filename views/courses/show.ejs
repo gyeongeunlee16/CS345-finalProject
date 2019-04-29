@@ -1,51 +1,68 @@
+<%/* This is for Topics Page */%>
 <% include ../partials/header %>
-<div class="container">
+<div class="container-fluid">
     <div class="row">
         
-        <div class="col-md-9">
+        <div class="col">
             <div class="thumbnail">
                 <img class="img-responsive" src="<%= course.image %>">
-                <div class="caption-full">
-                    
-                    <h4><a><%=course.name%></a></h4>
+                <div class="caption-full text-center">
+    
+                    <h1><a class="display-1"><%=course.name%></a></h1>
                     <p><%= course.description %></p>
+                    <!--
                     <p>
-                        <em>Submitted By <%= course.author.username %></em>
+                        <em>submitted by <%= course.author.username %> </em>
                     </p>
+                    -->
                     <% if(currentUser && course.author.id.equals(currentUser._id)){ %>
-                        <a class="btn btn-xs btn-warning" href="/courses/<%= course._id %>/edit">Edit</a>
+                        <a class="btn btn-xs btn-warning" href="/courses/<%= course._id %>/edit">Edit Course Info</a>
                         <form id="delete-form" action="/courses/<%= course._id %>?_method=DELETE" method="POST">
-                            <button class="btn btn-xs btn-danger">Delete</button>
+                            <button class="btn btn-xs btn-danger">Delete Course</button>
                         </form>
                     <% }%>
                 </div>
             </div>
             <div class="well">
-                <div class="text-right">
+                <div class="text-center">
                     <a class="btn btn-success" href="/courses/<%= course._id %>/topics/new">Add New Topic</a>
                 </div>
-                <hr>
+
+              
                 <% course.topics.forEach(function(topic){ %>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <strong><%= topic.author.username %></strong>
-                            <p>
-                                <%= topic.text %> 
-                            </p>
-                            
-                            <p>
-                                <a href="/courses/<%=course._id %>/topics/<%=topic._id %>" class="btn btn-primary">More Info</a>
-                            </p>
 
                         <% if(currentUser && topic.author.id.equals(currentUser._id)){ %>
-                            <a class="btn btn-xs btn-warning" 
-                               href="/courses/<%=course._id %>/topics/<%=topic._id %>/edit">Edit</a>
-                            <form id="delete-form" action="/courses/<%=course._id %>/topics/<%=topic._id %>?_method=DELETE" method="POST">
-                                <input type="submit" class="btn btn-xs btn-danger" value="Delete">
-                            </form>
+                            <div class="card-body w-50 mx-auto">
+                            <div class="list-group list-group-item list-group-item-action">
+                                <a href="/courses/<%=course._id %>/topics/<%=topic._id %>">
+                                   <div class="d-flex justify-content-between">
+                                      <h5><p><%= topic.text %></p></h5>
+                                    
+                                      <div class = "pull-right">
+                                        <div class="btn-group" role="group">
+                                        <a class="btn btn-warning" href="/courses/<%=course._id %>/topics/<%=topic._id %>/edit" >Edit Topic</a>
+                                        <form id="delete-form" action="/courses/<%=course._id %>/topics/<%=topic._id %>?_method=DELETE" method="POST">
+                                            <input type="submit" class="btn btn-xs btn-danger" value="Delete">
+                                        </form>
+                                        </div>
+                                      </div>
+                                    </div>
+                                </a>
+                            </div>
+                            </div>
+                        <% } else{ %>
+                            <div class="card-body w-50 mx-auto">
+                            <div class="list-group">
+                                <a href="/courses/<%=course._id %>/topics/<%=topic._id %>" class="list-group-item list-group-item-action flex-column align-items-start ">
+                                   <div class="d-flex justify-content-around">
+                                      <h5 class="mb-2"><p><%= topic.text %></p></h5>
+                                    </div>
+                                    
+                                </a>
+                            </div>
+                            </div>                            
                         <% } %>
-                        </div>
-                    </div>
+
                 <% }) %>
             </div>
         </div>

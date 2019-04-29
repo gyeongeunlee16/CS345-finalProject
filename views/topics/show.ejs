@@ -1,39 +1,89 @@
+<%/* This is for Resource Page */%>
 <% include ../partials/header %>
-<p>
-                      
-                        <em> Resources</em>
-                      
-               
+
+<div class="jumbotron jumbotron-fluid">
+<div class="container">
+                        <h1 class="display-1 text-center"> Resources</h1>
+        
                         
-                <div class="text-right">
+                <div class="text-center">
                     <a class="btn btn-success" href="/topics/<%= topic._id %>/resources/new">Add New Resource</a>
+                </div>
+</div>                  
+</div>
+
+<div class="list-group">    
+   <% topic.resources.forEach(function(resource){ %>
+        <% if(currentUser && resource.author.id.equals(currentUser._id)){ %>
+        <div class="card-deck w-100 mx-auto">  
+                <div class = "card" id="topic-actions">
+                    <div class="card-body">
+                        <div class="btn-group-vertical">
+                            <form action="/topics/<%= topic._id %>/resources/<%= resource._id %>/like/?_method=PUT" method="POST">
+                                <button class="btn btn-labeled btn-success"><span class="btn-label"><i class="fa fa-thumbs-o-up"></i></span></button>
+                            </form>
+                            <h3 class="text-center"><%= resource.likes_count %></h3>
+                            <form action="/topics/<%= topic._id %>/resources/<%= resource._id %>/dislike/?_method=PUT" method="POST">
+                                <button class="btn btn-labeled btn-danger"><span class="btn-label"><i class="fa fa-thumbs-o-down"></i></span></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>                        
+                <div class="card" id="topic-card">
+                    <div class="card-body">
+                    <h3 class="card-title">Title: <%= resource.title %></h3>
+                    <p class="card-text"> <b>Description: </b><%= resource.description %></p>
+                    <p class="class-text">Link: <a href="<%= resource.link %>"><%= resource.link %></a></p>
+                    
+                    <div class="d-flex justify-content-between">
+                        
+                    <p class="card-text"><small class="text-muted">Submitted by: <%= resource.author.username %></small></p>
+                    <div class="float-right">
+                        <div class="btn-group" role="group">
+                        <a class="btn btn-warning" 
+                           href="/topics/<%=topic._id %>/resources/<%=resource._id %>/edit">Edit</a>
+                        <form id="delete-form" action="/topics/<%=topic._id %>/resources/<%=resource._id %>?_method=DELETE" method="POST">
+                            <input type="submit" class="btn btn-danger" value="Delete">
+                        </form>
+                        </div>
+                    </div>    
+                    </div>
+                    </div>
                 </div>
                 
 
+                <% } else {%>
+                    <div class="card-deck w-100 mx-auto">  
+                        <div class = "card" id="topic-actions">
+                            <div class="card-body">
+                                <div class="btn-group-vertical">
+                                    <form action="/topics/<%= topic._id %>/resources/<%= resource._id %>/like/?_method=PUT" method="POST">
+                                        <button class="btn btn-labeled btn-success"><span class="btn-label"><i class="fa fa-thumbs-o-up"></i></span></button>
+                                    </form>
+                                    <h3 class="text-center"><%= resource.likes_count %></h3>
+                                    <form action="/topics/<%= topic._id %>/resources/<%= resource._id %>/dislike/?_method=PUT" method="POST">
+                                        <button class="btn btn-labeled btn-danger"><span class="btn-label"><i class="fa fa-thumbs-o-down"></i></span></button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>                       
+                    <div class="card" id="topic-card">
+                        <div class="card-body">
+                        <h2 class="card-title"> Title: <%= resource.title %></h2>
+                        <p class="card-text">Description: <%= resource.description %></p>
+                        <a href='<%= resource.link %>'>Link: <%= resource.link %></a>
+                        <p class="card-text"><small class="text-muted">Submitted by: <%= resource.author.username %></small></p>
+    
+                        </div>
+                    </div>
+                <% } %>
+            </div>                
+                
+    <% }) %>
+</div>
 
-   <% topic.resources.forEach(function(resource){ %>
-          
-                        
-                            <p>
-                                <p><%= resource.title %></p>
-                                <p><%= resource.description %></p>
-                                <a href='<%= resource.link %>'><%= resource.link %></a>
-                            </p>
-                            
-                            <% if(currentUser && resource.author.id.equals(currentUser._id)){ %>
-                            <a class="btn btn-xs btn-warning" 
-                               href="/topics/<%=topic._id %>/resources/<%=resource._id %>/edit">Edit</a>
-                            <form id="delete-form" action="/topics/<%=topic._id %>/resources/<%=resource._id %>?_method=DELETE" method="POST">
-                                <input type="submit" class="btn btn-xs btn-danger" value="Delete">
-                            </form>
-                        <% } %>
-                            
-                            
-                <% }) %>
 
 
-
-</p>
 
 <% include ../partials/footer %>
 

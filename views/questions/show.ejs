@@ -2,18 +2,18 @@
 <div class="container">
     <div class="row">
         
-        <div class="col-md-9">
+        <div class="row-md-9">
             <div class="thumbnail">
                 <div class="caption-full">
-                    
-                    <h4><a><%=question.name%></a></h4>
-                    <p><%= question.description %></p>
-                    <code><%= question.code %></code>
                     <p>
-                        <em>Submitted By <%= question.author.username %></em>
+                        <em><%= question.author.username %> has asked: </em>
                     </p>
+                    <h4><a><%=question.name%></a></h4>
+                    <p style="white-space: pre-wrap" ><%= question.description %></p>
+                    <code style="white-space: pre-wrap" ><%= question.code %></code>
+                    
                     <% if(currentUser && question.author.id.equals(currentUser._id)){ %>
-                        <a class="btn btn-xs btn-warning" href="/questions/<%= question._id %>/edit">Edit</a>
+                        <a href="/questions/<%= question._id %>/edit"><i class="fa fa-pencil" aria-hidden="true"></i> Edit Post</a>
                         <form id="delete-form" action="/questions/<%= question._id %>?_method=DELETE" method="POST">
                             <button class="btn btn-xs btn-danger">Delete</button>
                         </form>
@@ -22,25 +22,22 @@
             </div>
             <div class="well">
                 <div class="text-right">
-                    <a class="btn btn-success" href="/questions/<%= question._id %>/replies/new">Add New Reply</a>
+                    <a  href="/questions/<%= question._id %>/replies/new"><i class="fa fa-reply" aria-hidden="true"></i> Reply</a>
                 </div>
                 <hr>
                 <% question.replies.forEach(function(reply){ %>
-                    <div class="row">
+                    <div class="col">
                         <div class="col-md-12">
                             <strong><%= reply.author.username %></strong>
-                            <p>
-                                <%= reply.text %> 
-                            </p>
-                            <code>
-                                <%= reply.code %> 
-                            </code>
+                            
+                            <p style="white-space: pre-wrap" ><%= reply.text %></p>
+                            <code style="white-space: pre-wrap"><%= reply.code %></code>
                             
 
 
                         <% if(currentUser && reply.author.id.equals(currentUser._id)){ %>
-                            <a class="btn btn-xs btn-warning" 
-                               href="/questions/<%=question._id %>/replies/<%=reply._id %>/edit">Edit</a>
+                            <a 
+                               href="/questions/<%=question._id %>/replies/<%=reply._id %>/edit"><i class="fa fa-pencil" aria-hidden="true"></i> Edit Reply</a>
                             <form id="delete-form" action="/questions/<%=question._id %>/replies/<%=reply._id %>?_method=DELETE" method="POST">
                                 <input type="submit" class="btn btn-xs btn-danger" value="Delete">
                             </form>

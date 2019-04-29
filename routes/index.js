@@ -38,6 +38,8 @@ router.get("/login", function(req, res){
 });
 
 /*
+OLD code without the ability to return to previous page after login
+
 //handling login logic
 router.post("/login", passport.authenticate("local",
     {
@@ -57,7 +59,7 @@ router.post("/login", function(req, res){
             //return res.redirect("/"); 
             //console.log("returnTo is",req.session.returnTo);
             //console.log("original is ",req.originalUrl);
-            res.redirect(req.session.returnTo || '/');
+            res.redirect(req.session.returnTo || '/'); //allow user to go back to previous page. the req.session.returnTo is from middleware
             delete req.session.returnTo;
         });
     });

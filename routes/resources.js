@@ -20,6 +20,7 @@ router.post("/", middleware.isLoggedIn, function(req, res){
                //add username and id to resource
                resource.author.id = req.user._id;
                resource.author.username = req.user.username;
+               resource.likes_count = 0;
             
                //save the newly created resource
                resource.save();
@@ -123,6 +124,39 @@ router.delete('/:resource_id', middleware.checkResourceOwnership, function(req, 
     });
 });
 
+// UPDATE ROUTE FOR LIKE BUTTON
+router.put('/:resource_id/like', function(req, res){
+    Resource.findByIdAndUpdate(req.params.resource_id, req.body.resource, function(err, updatedResource){
+        if (err){
+            res.redirect('back');
+        }else{
+            console.log('yes');
+            
+            updatedResource.likes_count += 1;
+            
+            //console.log("======= updated Resource is =====: ", updatedResource.likes_count);
+            res.redirect('back');
+            updatedResource.save(); //Save the newly updated resource into the database
+        }
+    });
+});
+
+// UPDATE ROUTE FOR DISLIKE BUTTON
+router.put('/:resource_id/dislike', function(req, res){
+    Resource.findByIdAndUpdate(req.params.resource_id, req.body.resource, function(err, updatedResource){
+        if (err){
+            res.redirect('back');
+        }else{
+            console.log('yes');
+            
+            updatedResource.likes_count -= 1;
+            
+            //console.log("======= updated Resource is =====: ", updatedResource.likes_count);
+            res.redirect('back');
+            updatedResource.save(); //Save the newly updated resource into the database
+        }
+    });
+});
 
 
 module.exports = router;

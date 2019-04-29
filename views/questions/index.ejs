@@ -1,32 +1,39 @@
 <% include ../partials/header %> 
 
  <div class="container">
-     <header class="jumbotron">
-         <div class="container">
-             <h1>Welcome To Earlham CS!</h1>
-             <p>View our CS questions</p>
-             <p>
-                <a class="btn btn-primary btn-large" href="/questions/new">Add New Question</a>
-             </p>
-         </div>
-     </header>
+    <p>
+            <h1 class="display-1 text-center">Discussion Board</h1>
+            
+              <div class="text-center">
+                <a class="btn btn-primary btn-lg" href="/questions/new">Add New Question</a>
+             </div>
+    </p>
+
+
      
-     <div class="row text-center" style="display:flex; flex-wrap: wrap;">
-        <% questions.forEach(function(question){ %>
-            <div class="col-md-3 col-sm-6">
-                <div class="thumbnail">
-                   <img src="<%= question.image %>">
-                   <div class="caption">
-                       <h4><%= question.name %></h4>
-                   </div>
-                   <p>
-                       <a href="/questions/<%= question._id %>" class="btn btn-primary">More Info</a>
-                   </p>
+     <div class="card card-hover">
+	  <% questions.forEach(function(question){ %>
+                    <div class="card-header">
+                        <div class="d-flex justify-content-start align-items-center">
+                                <div class="thumbnail">
+                                    <img src="<%= question.image %>">
+                                </div>
+                                <div class="ml-1 bg-transparent px-0">
+                                    <div class="h5"><%= question.name %></div>
+                                </div>
+                            </div>
+                    <div class="card-body px-1">
+                     <%/* <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i>10 min ago</div> */%>
+                        <p class="card-text "><%= question.description %></p>
+                    <div class="card-footer">
+                        <a href="/questions/<%= question._id %>" class="card-link"><i class="fa fa-caret-right" aria-hidden="true"></i> See replies</a>
+                        </div>
+                     </div>
                 </div>
-            </div>
-        <% }); %>
-    </div>
-</div>
+            <% }); %>
+        </div>
+ </div>
+
 
 <% include ../partials/footer %>
 

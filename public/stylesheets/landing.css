@@ -1,15 +1,56 @@
 body {
-  background-color: #000;
+  background: white;
 }
-
-#landing-header {
-  z-index: 1;
+.jumbotron-fluid{
+  background:#6DD5FA;
+  background-position:center;
   position: relative;
-  text-align: center;
-  padding-top: 40vh;
+  display: flex;
+  align-items: center;
+}
+.jumbotron {
+  color: white;
+}
+.jumbotron-fluid .container-fluid {
+		position: relative;
 }
 
-#landing-header h1 {
-  color: #fff;
+.navbar.navbar-expand-md{
+  min-height: 80px;
 }
 
+.nav.navbar-nav.ml-auto li a{
+    color: black;
+    font-size: large;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+.nav.navbar-nav.ml-auto li a:hover{
+    color: white;
+}
+
+.card-deck.text-center{
+
+    background-color: transparent;
+    margin-left: 50px;
+    margin-right: 50px;
+    width: 1200px;
+}
+
+.card{
+  border-color: #F37335;
+  height: 200px;
+  border-left:0;
+  border-top:0;
+}
+
+.card-header{
+  background-color: transparent;
+  color: #F37335;
+  border:0;
+}
+
+#button-color{
+  background-color: #F37335;
+  border:0;
+}
