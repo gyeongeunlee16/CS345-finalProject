@@ -4,7 +4,7 @@ To visit the website, go to ..........
 
 At our homepage, you can find three tools that we offer as specified below.
 
-**1) Resource Page**
+**1) Resource Page**  
 This is where users can upload resources for each CS courses at Earlham.
 
 After you click on this tool, a list of Computer Science classes offered at Earlham will appear. When you click on each class, a list of Topics taught in 
@@ -31,7 +31,7 @@ Topics: The Topics in each Course are sorted and displayed in alphabetical order
 Resource: You can like and dislike a resource. The Resources are sorted and displayed based on the number of like/dislike.
 You will be able to see the onwers of each resource.
 
-**2) Forum Page**
+**2) Forum Page**  
 This is where users can ask a question and answer other people questions.
 
 At the main page of the Forum, all of the questions are displayed. However, only a portion of the questions are visible. You have to click on a particular
@@ -48,10 +48,10 @@ edit your code before including it in your post.
 You will be able to see the owner of each question and replies.
 You have to login to be able to see details of the questions and replies.
 
-**3) Code Editor and Compiler**
-This is a Code Editor/Compiler where you can edit and run your program. 
-We support a wide variety of languages, such as Python, C, C++, Java, etc. Click on the drop down menu to see the complete list of the languages that we support.
-We support code highlighting and automatic indentation.
+**3) Code Editor and Compiler**  
+This is a Code Editor/Compiler where you can edit and run your program.   
+We support a wide variety of languages, such as Python, C, C++, Java, etc. Click on the drop down menu to see the complete list of the languages that we support.  
+We support code highlighting and automatic indentation.  
 
 You can hit run to compile your program. The output will be displayed in the OUTPUT box. You will still be able to see your current code and continue editing 
 even after your program is compiled. (The current input will not be erased.)
