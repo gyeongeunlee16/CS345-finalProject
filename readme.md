@@ -31,7 +31,7 @@ Topics: The Topics in each Course are sorted and displayed in alphabetical order
 Resource: You can like and dislike a resource. The Resources are sorted and displayed based on the number of like/dislike.
 You will be able to see the onwers of each resource.
 
-**2) Forum Page*8
+**2) Forum Page**
 This is where users can ask a question and answer other people questions.
 
 At the main page of the Forum, all of the questions are displayed. However, only a portion of the questions are visible. You have to click on a particular
