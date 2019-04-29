@@ -1,4 +1,4 @@
-#CS Resource Guide
+# CS Resource Guide
 
 This is a web application with resources tailored to the need of the Computer Science students at Earlham College.
 
