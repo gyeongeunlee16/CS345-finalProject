@@ -1,6 +1,6 @@
 This is a web application with resources tailored to the need of the Computer Science students at Earlham College.
 
-To visit the website, go to ..........
+To visit the website, go to https://salty-mountain-60927.herokuapp.com/
 
 At our homepage, you can find three tools that we offer as specified below.
 
