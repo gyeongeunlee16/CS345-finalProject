@@ -1,3 +1,5 @@
+#CS Resource Guide
+
 This is a web application with resources tailored to the need of the Computer Science students at Earlham College.
 
 To visit the website, go to https://salty-mountain-60927.herokuapp.com/
