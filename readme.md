@@ -57,9 +57,7 @@ You can hit run to compile your program. The output will be displayed in the OUT
 even after your program is compiled. (The current input will not be erased.)
 
 **Note:**
-At certain points such as before being able to post anything to our Forum or Resource Page, you will be promted to login. After you login, you will be directed correctly 
-to the page that you wanted to go to before being promted to login.
-If you don't have an account, you can signup for a new account. The login/signup can be found at the top right corner in any pages of our app.
+At certain points such as before being able to post anything to our Forum or Resource Page, you will be promted to login.   After you login, you will be directed correctly to the page that you wanted to go to before being promted to login.  
+If you don't have an account, you can signup for a new account. The login/signup can be found at the top right corner in any pages of our app.    
 At the top left corner of our app is a button that said "Earlham." You can click on this button to go back to the home page.
-When you are in a tool page, ie, Code Compiler page, you can stll navigate to the other two tool pages, ie. Resource and Forum pages, using our navigation bar 
-at the top.
+When you are in a tool page, ie, Code Compiler page, you can stll navigate to the other two tool pages, ie. Resource and Forum pages, using our navigation bar at the top.  
